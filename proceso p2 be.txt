@@ -1,0 +1,38 @@
+proceso p3 be
+AÑADIR SPRING SECURITY
+- añadir dependecia de Spring Security al pom --> Spring Boot 4-M3 aun no tiene la dependencia por ser una versión milestone. Cambiamos a Spring Boot 3.3.4 que sí que es compatible con Spring Security, añadimos dependencia y recargamos Maven.
+
+CREACIÓN DE LOGIN Y REGISTRO + SEGURIDAD Y GESTIÓN DE LA SESIÓN
+- creamos la entidad usuario y el repositorio.
+- creamos una clase de configuración para la seguridad y ponemos parámetros.
+- creamos una clase de servicio para gestionar los usuarios, verificar si existen y codificar contraseñas.
+- crear el controlador de autenticación para mostrar el login o el registro.
+- modificamos el controller del index.
+- creamos el html para el login.
+- creamos el html para el registro.
+(se han añadido estilos de bootstrap para hacerlos más claros)
+- añadimos ruta a las páginas en el navbar del índice.
+- actualizamos application.properties con configuración adicional de Spring Secutiry y para mensajes de login y errores.
+- problema con el login: se crea el usuario pero no se puede buscar en la bbdd. Añadimos detalles del servicio para cargar usuarios desde la bbdd. Implementamos detalles del usuario en el modelo, creamos el servicio, actualizamos la configuración de seguridad y funciona.
+- no hay opción para hacer logout. Ampliamos configuración de seguridad y funcionalidad para el logut.
+- para que sea más sencillo, se crea un navbar nuevo como fragmento html para reusar en todas las páginas.
+- se modifican los html de todas las páginas para incluir el nuevo navbar con la opción de inicio de sesión y registro (cuando el usuario no está autenticado) y cerrar sesión (cuando está autenticado).
+
+RELACIÓN DE USUARIO CON UNA ENTIDAD
+- se añade la relación del usuario con una entidad, en este caso los alquileres. para cada alquiler, se podrá ver qué usuario lo ha creado.
+- se modifica la entidad alquiler para añadir la relación con el usuario y el controlador para asignar al usuario autenticado.
+- se actualiza la vista del listado para añadir el usuario.
+
+GESTIÓN DE ROLES
+- para la gestión de roles, el admin podrá hacer todas las gestiones de la plataforma, pero el user sólo podrá crear alquileres, no podrá ni ver ni crear ni clientes ni vehículos.
+- se modifica la entidad usuarios para añadir el rol.
+- se modifica la configuración de seguridad para poder gestionar las rutas según el rol del ususario.
+- se crean los controladores para las dos rutas según el rol y las acciones y vistas.
+- se modifica el navbar para mostrar las opciones para cada rol.
+- se reorganizan los directorios de templates para los roles diferentes.
+- se modifica el resgitro para elegir si el usuario será user o admin.
+- se arreglan varios errores relacionados con las rutas que se siguen en los directorios de templates según el rol para hacerlas absolutas en todas las vistas.
+
+
+
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes - AlquilaTusVehiculos</title>
+</head>
+<body>
+<header>
+    <h1>AlquilaTusVehiculos</h1>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    <hr/>
+</header>
+
+<h2>Listado de clientes</h2>
+<a th:href="@{/admin/clientes/create}">+ Añadir Cliente</a>
+<table>
+    <thead>
+    <tr><th>ID</th><th>DNI</th><th>Telefono</th><th>Nombre</th><th>Acciones</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="c : ${clientes}">
+        <td th:text="${c.id}">1</td>
+        <td th:text="${c.dni}">DNI</td>
+        <td th:text="${c.telefono}">Telefono</td>
+        <td th:text="${c.nombre}">Nombre</td>
+        <td>
+            <a th:href="@{|/admin/clientes/edit/${c.id}|}">Editar</a>
+            &nbsp;|&nbsp;
+            <a th:href="@{|/admin/clientes/delete/${c.id}|}" onclick="return confirm('¿Borrar cliente?')">Borrar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

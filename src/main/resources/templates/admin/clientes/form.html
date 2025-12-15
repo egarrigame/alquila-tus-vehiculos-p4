@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${cliente.id != null}? 'Editar Cliente' : 'Nuevo Cliente'">Cliente</title>
+</head>
+<body>
+<header>
+  <h1>AlquilaTusVehiculos</h1>
+  <div th:replace="~{fragments/navbar :: navbar}"></div>
+  <hr/>
+</header>
+
+<h2 th:text="${cliente.id != null}? 'Editar Cliente' : 'Nuevo Cliente'">Nuevo Cliente</h2>
+
+<form th:action="@{/admin/clientes/save}" th:object="${cliente}" method="post">
+  <input type="hidden" th:field="*{id}" />
+  <div>
+    <label>DNI: <input type="text" th:field="*{dni}" placeholder="00000000A"/></label>
+  </div>
+  <div>
+    <label>Telefono: <input type="text" th:field="*{telefono}" placeholder="000000000" /></label>
+  </div>
+  <div>
+    <label>Nombre: <input type="text" th:field="*{nombre}" placeholder="nombre" /></label>
+  </div>
+  <div>
+    <button type="submit">Guardar</button>
+    <a th:href="@{/admin/clientes}">Cancelar</a>
+  </div>
+</form>
+</body>
+</html>

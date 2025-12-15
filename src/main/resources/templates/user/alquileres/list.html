@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Alquileres</title></head>
+<body>
+<header>
+  <h1>AlquilaTusVehiculos</h1>
+  <div th:replace="~{fragments/navbar :: navbar}"></div>
+  <hr/>
+</header>
+
+<h2>Listado de alquileres</h2>
+<a th:href="@{/user/alquileres/create}">+ Nuevo Alquiler</a>
+
+<table>
+  <thead><tr><th>ID</th><th>Cliente</th><th>Fecha inicio</th><th>Fecha fin</th><th>Importe</th><th>Usuario</th></tr></thead>
+  <tbody>
+  <tr th:each="a : ${alquileres}">
+    <td th:text="${a.id}">1</td>
+    <td th:text="${a.cliente != null ? a.cliente.nombre : 'N/A'}">Cliente</td>
+    <td th:text="${a.fechaInicio}">2025-01-01</td>
+    <td th:text="${a.fechaFin}">2025-01-05</td>
+    <td th:text="${a.importeTotal}">0.0</td>
+    <td th:text="${a.usuario != null ? a.usuario.nombre : 'N/A'}">Usuario</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

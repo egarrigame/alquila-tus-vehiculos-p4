@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div th:fragment="navbar">
+    <header>
+        <nav>
+            <a th:href="@{/home}">Inicio</a> |
+
+            <!--Rol admin-->
+            <span sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/admin/vehiculos}">Vehículos</a> |
+                <a th:href="@{/admin/clientes}">Clientes</a> |
+                <a th:href="@{/admin/alquileres}">Alquileres</a> |
+            </span>
+
+            <!--Rol user-->
+            <span sec:authorize="hasRole('USER')">
+                <a th:href="@{/user/alquileres}">Alquileres</a> |
+            </span>
+
+            <span sec:authorize="isAuthenticated()">
+                    Bienvenido, <span sec:authentication="principal.nombre"></span>
+                    (<span sec:authentication="principal.rol"></span>)
+                    <form th:action="@{/logout}" method="post" style="display: inline;">
+                        <button type="submit">Cerrar sesión</button>
+                    </form>
+                </span>
+            <span sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/login}">Iniciar sesión</a> |
+                    <a th:href="@{/registro}">Registrarse</a>
+                </span>
+        </nav>
+        <hr/>
+    </header>
+</div>
+</body>
+</html>

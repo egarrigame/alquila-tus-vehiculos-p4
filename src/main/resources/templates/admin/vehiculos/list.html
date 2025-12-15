@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Vehículos</title></head>
+<body>
+<header>
+  <h1>AlquilaTusVehiculos</h1>
+  <div th:replace="~{fragments/navbar :: navbar}"></div>
+  <hr/>
+</header>
+
+<h2>Listado de vehículos</h2>
+<a th:href="@{/admin/vehiculos/create}">+ Añadir Vehículo</a>
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead><tr><th>ID</th><th>Matricula</th><th>Modelo</th><th>Precio/día</th><th>Acciones</th></tr></thead>
+  <tbody>
+  <tr th:each="v : ${vehiculos}">
+    <td th:text="${v.id}">1</td>
+    <td th:text="${v.matricula}">Matricula</td>
+    <td th:text="${v.modelo}">Modelo</td>
+    <td th:text="${v.precioDia}">0.0</td>
+    <td>
+      <a th:href="@{|/admin/vehiculos/delete/${v.id}|}" onclick="return confirm('¿Borrar vehículo?')">Borrar</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
